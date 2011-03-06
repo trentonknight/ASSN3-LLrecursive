@@ -45,14 +45,8 @@ NODE *buildList(){
 
   while(input[alpha] != '\0'){
     pNEW->let = input[alpha];
-    if(alpha < 1){ 
-      pNEW->next = pPRE;
-      pPRE = pNEW;
-    }
-    else{
-      pNEW->next = pPRE->next;
-      pPRE->next = pNEW;
-    }
+    pNEW->next = pPRE;
+    pPRE = pNEW;
     pNEW = pNEW->next;
     pNEW = new NODE;
     alpha++;
