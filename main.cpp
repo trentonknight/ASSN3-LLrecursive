@@ -1,6 +1,7 @@
 #include <iostream>
 #include <stdlib.h>
 #include <stdio.h>
+#include <iomanip>
 
 using namespace std;
 static int MAX = 50;
@@ -12,7 +13,9 @@ struct NODE{
 
 void driver();
 void printOUT();
-NODE *buildList(); 
+NODE *buildList();
+NODE *removeNode(NODE *head); 
+void printList(NODE *head);
 
 int main(){
   
@@ -27,6 +30,9 @@ void driver(){
   head = new NODE;
   printOUT();
   head = buildList();
+  printList(head);
+  head = removeNode(head);
+  printList(head);
   cout << "finished" << endl;
 }
 void printOUT(){
@@ -51,5 +57,35 @@ NODE *buildList(){
     pNEW = new NODE;
     alpha++;
   }
+    
   return pPRE;
+}
+NODE *removeNode(NODE *head){
+NODE *delN;
+NODE *temp;
+   
+ if(head->next->next != 0){
+   temp = head;
+   head = head->next;
+   removeNode(head);
+ }
+ else{
+   delN = head;
+   delete [] delN;
+   delN = NULL;
+ }
+ 
+  return temp;
+}
+void printList(NODE *head){
+
+  if(head->next != 0){
+    cout << setw(4)<< head->let;
+    head = head->next;
+    printList(head);
+  }
+  else{
+    cout << endl;
+  }
+
 }
