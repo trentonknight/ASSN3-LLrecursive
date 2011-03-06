@@ -12,7 +12,7 @@ struct NODE{
 
 void driver();
 void printOUT();
-NODE *buildList(NODE *head); 
+NODE *buildList(); 
 
 int main(){
   
@@ -26,7 +26,7 @@ void driver(){
   NODE *head;
   head = new NODE;
   printOUT();
-  buildList(head);
+  head = buildList();
   cout << "finished" << endl;
 }
 void printOUT(){
@@ -34,22 +34,28 @@ void printOUT(){
   cout << "and returns the result. Enter a list of letters to place in the" << endl;
   cout << "list (or press ENTER for an empty list): " << endl;
 }
-NODE *buildList(NODE *head){
+NODE *buildList(){
   NODE *pNEW;
   pNEW = new NODE;
-  
+  NODE *pPRE;
+  pPRE = new NODE;
   char input[MAX];
-  int alpha = 0;
-   
-  cin.getline(input,MAX); 
-  
+  int alpha = 0;   
+  cin.getline(input,MAX);
+
   while(input[alpha] != '\0'){
     pNEW->let = input[alpha];
-    pNEW->next = head->next;
-    head->next = pNEW;
+    if(alpha < 1){ 
+      pNEW->next = pPRE;
+      pPRE = pNEW;
+    }
+    else{
+      pNEW->next = pPRE->next;
+      pPRE->next = pNEW;
+    }
     pNEW = pNEW->next;
     pNEW = new NODE;
     alpha++;
   }
-  return head;
+  return pPRE;
 }
