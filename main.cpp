@@ -61,20 +61,18 @@ NODE *buildList(){
   return pPRE;
 }
 NODE *removeNode(NODE *head){
-NODE *delN;
 NODE *temp;
    
- if(head->next->next != 0){
+ if(head->next->let != '\0'){
    temp = head;
    head = head->next;
    removeNode(head);
  }
  else{
-   delN = head;
-   delete [] delN;
-   delN = NULL;
+   delete head;
+   head->next = 0;
  }
- 
+  
   return temp;
 }
 void printList(NODE *head){
