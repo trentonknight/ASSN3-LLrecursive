@@ -30,10 +30,12 @@ void driver(){
   head = new NODE;
   printOUT();
   head = buildList();
+  if(head->let != '\0'){
   printList(head);
   head = removeNode(head);
   printList(head);
   cout << "finished" << endl;
+  }
 }
 void printOUT(){
   cout << "This function removes the final node of a linked list of letters" << endl;
@@ -72,7 +74,7 @@ NODE *temp;
    delete head;
    head->next = 0;
  }
-  
+
   return temp;
 }
 void printList(NODE *head){
